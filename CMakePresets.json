@@ -1,0 +1,205 @@
+{
+  "version": 8,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 28,
+    "patch": 0
+  },
+
+  "configurePresets":
+  [
+    {
+      "name"          : "base",
+      "hidden"        : true,
+      "binaryDir"     : "${sourceDir}/out/build/${presetName}",
+      "installDir"    : "${sourceDir}/out/install/${presetName}",
+      "cacheVariables":
+      {
+        "CMAKE_EXPORT_COMPILE_COMMANDS" : "ON"
+      }
+    },
+
+    {
+      "name"      : "win-base",
+      "hidden"    : true,
+      "inherits"  : "base",
+      "generator" : "Ninja",
+
+      "condition" :
+      {
+        "type"  : "equals",
+        "lhs"   : "${hostSystemName}",
+        "rhs"   : "Windows"
+      }
+    },
+
+    {
+      "name"      : "linux-base",
+      "hidden"    : true,
+      "inherits"  : "base",
+      "generator" : "Ninja",
+
+      "condition" :
+      {
+        "type"  : "equals",
+        "lhs"   : "${hostSystemName}",
+        "rhs"   : "Linux"
+      }
+    },
+
+    {
+      "name"          : "win-x64-debug",
+      "inherits"      : "win-base",
+      "displayName"   : "Windows x64 Debug",
+
+      "architecture"  :
+      {
+        "value"     : "x64",
+        "strategy"  : "external"
+      },
+
+      "cacheVariables":
+      {
+        "CMAKE_BUILD_TYPE"  : "Debug"
+      }
+    },
+
+    {
+      "name"          : "win-x64-release",
+      "inherits"      : "win-base",
+      "displayName"   : "Windows x64 Release",
+
+      "architecture"  :
+      {
+        "value"     : "x64",
+        "strategy"  : "external"
+      },
+
+      "cacheVariables":
+      {
+        "CMAKE_BUILD_TYPE"  : "Release"
+      }
+    },
+
+    {
+      "name"          : "linux-debug",
+      "inherits"      : "linux-base",
+      "displayName"   : "Linux Debug",
+
+      "cacheVariables":
+      {
+        "CMAKE_BUILD_TYPE"  : "Debug"
+      }
+    },
+
+    {
+      "name"          : "linux-release",
+      "inherits"      : "linux-base",
+      "displayName"   : "Linux Release",
+
+      "cacheVariables":
+      {
+        "CMAKE_BUILD_TYPE"  : "Release"
+      }
+    }
+  ],
+
+  "buildPresets":
+  [
+    {
+      "name"              : "win-x64-debug",
+      "displayName"       : "Windows x64 Debug",
+      "configurePreset"   : "win-x64-debug"
+    },
+
+    {
+      "name"              : "win-x64-release",
+      "displayName"       : "Windows x64 Release",
+      "configurePreset"   : "win-x64-release"
+    },
+
+    {
+      "name"              : "linux-debug",
+      "displayName"       : "Linux Debug",
+      "configurePreset"   : "linux-debug"
+    },
+
+    {
+      "name"              : "linux-release",
+      "displayName"       : "Linux Release",
+      "configurePreset"   : "linux-release"
+    }
+  ],
+
+  "workflowPresets":
+  [
+    {
+      "name"          : "win-x64-debug",
+      "displayName"   : "Windows x64 Debug",
+      "steps"         :
+      [
+        {
+          "type"  : "configure",
+          "name"  : "win-x64-debug"
+        },
+
+        {
+          "type"  : "build",
+          "name"  : "win-x64-debug"
+        }
+      ]
+    },
+
+    {
+      "name"          : "win-x64-release",
+      "displayName"   : "Windows x64 Release",
+      "steps"         :
+      [
+        {
+          "type"  : "configure",
+          "name"  : "win-x64-release"
+        },
+
+        {
+          "type"  : "build",
+          "name"  : "win-x64-release"
+        }
+      ]
+    },
+
+    {
+      "name"          : "linux-debug",
+      "displayName"   : "Linux Debug",
+      "steps"         :
+      [
+        {
+          "type"  : "configure",
+          "name"  : "linux-debug"
+        },
+
+        {
+          "type"  : "build",
+          "name"  : "linux-debug"
+        }
+      ]
+    },
+
+    {
+      "name"          : "linux-release",
+      "displayName"   : "Linux Release",
+      "steps"         :
+      [
+        {
+          "type"  : "configure",
+          "name"  : "linux-release"
+        },
+
+        {
+          "type"  : "build",
+          "name"  : "linux-release"
+        }
+      ]
+    }
+  ]
+}
+

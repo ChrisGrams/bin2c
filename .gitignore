@@ -1,0 +1,70 @@
+#
+# File:     .gitignore
+# Author:   CNG
+# Created:  August 22, 2025
+#
+# Description: Git ignore
+#
+
+# Build artifacts
+**/build/
+/build/
+/bin/
+/CMakeFiles/
+/CMakeCache.txt
+/cmake_install.cmake
+/Makefile
+/out
+
+# Compiled object files and binaries
+*.o
+*.obj
+*.so
+*.dll
+*.dylib
+*.lib
+*.a
+*.exe
+*.out
+*.app
+
+# Precompiled headers
+*.gch
+*.pch
+
+# Debug and IDE files
+*.pdb
+*.ilk
+*.log
+
+# VS Code
+.vscode/
+
+# CLion / JetBrains
+.idea/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Lua compiled files
+*.luac
+
+# Git submodule metadata (optional, if you want to ignore nested .git dirs)
+libs/**/.git
+
+# Backup and temp files
+*~
+*.swp
+*.bak
+*.tmp
+
+# Ninja
+/build.ninja
+/.ninja_deps
+/.ninja_log
+
