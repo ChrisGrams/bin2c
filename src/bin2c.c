@@ -204,7 +204,7 @@ int is_ascii_alnum(char c);
 int is_ascii_alpha(char c);
 
 /*  Return 1 if the C identifier is valid, or return 0.                      */
-int is_valid_c_identifier(const char* id);
+Err is_valid_c_identifier(const char* id);
 
 /*  Parse command line options, returning an error on failure or ERR_OK.     */
 Err parse_opts(options* opts, int argc, const char* argv[]);
